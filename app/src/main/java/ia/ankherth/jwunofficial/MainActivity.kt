@@ -5,17 +5,19 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
-import android.webkit.WebSettings.LOAD_DEFAULT
 import android.webkit.WebSettings.LOAD_CACHE_ELSE_NETWORK
 import android.webkit.WebSettings.LOAD_CACHE_ONLY
 import androidx.activity.OnBackPressedCallback
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var webView: WebView
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     companion object {
-        private const val TARGET_URL = "https://www.jw.org/"
+        private const val HOME_URL = "https://www.jw.org/"
+        private const val NEWS_URL = "https://www.jw.org/en/news/"
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -24,12 +26,33 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         webView = findViewById(R.id.webView)
+        bottomNavigationView = findViewById(R.id.bottomNavigationView)
 
         setupWebView()
         setupBackPressHandler()
+        setupBottomNavigation()
 
-        // Cargar la página
-        webView.loadUrl(TARGET_URL)
+        // Cargar la pgina
+        webView.loadUrl(HOME_URL)
+    }
+
+    private fun setupBottomNavigation() {
+        bottomNavigationView.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_home -> {
+                    webView.loadUrl(HOME_URL)
+                    true
+                }
+                R.id.nav_news -> {
+                    webView.loadUrl(NEWS_URL)
+                    true
+                }
+                else -> false
+            }
+        }
+
+        // Establecer el item de inicio como seleccionado
+        bottomNavigationView.selectedItemId = R.id.nav_home
     }
 
     @SuppressLint("SetJavaScriptEnabled")
