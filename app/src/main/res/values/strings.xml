@@ -1,5 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">JW UNOFFICIAL</string>
+    <string name="app_name">JW Unofficial</string>
     <string name="nav_home">Inicio</string>
     <string name="nav_news">Noticias</string>
+    <string name="language_selection_title">Seleccionar Idioma</string>
+    <string name="language_selection_message">Por favor, selecciona tu idioma preferido</string>
+    <string name="language_confirm">Confirmar</string>
+    <string name="language_cancel">Cancelar</string>
+    <string name="action_change_language">Cambiar idioma</string>
 </resources>
+

@@ -1,158 +1,144 @@
+# JW UNOFFICIAL
 
-1. Clonar o abrir el proyecto en Android Studio
-2. Sincronizar Gradle
-3. Conectar un dispositivo o emulador Android
-4. Ejecutar la aplicación
+**Aplicación Android nativa** para acceder a jw.org con funcionalidades optimizadas.
 
-### Build desde Terminal
+![Version](https://img.shields.io/badge/version-1.0.2-blue.svg)
+![Android](https://img.shields.io/badge/Android-10%2B-green.svg)
+![License](https://img.shields.io/badge/license-MIT-orange.svg)
 
+---
+
+## 🚀 Características Principales
+
+### 🌍 Sistema Multi-Idioma
+- **32 idiomas soportados** con selector intuitivo al primer uso
+- **Persistencia automática** del idioma seleccionado
+- **Cambio manual** desde el menú en cualquier momento
+- **Detección automática** cuando cambias idioma desde la web
+- URLs dinámicas según idioma (ej: `/es/`, `/pt/`, `/fr/`)
+
+### 📱 Navegación
+- **Barra inferior** con acceso rápido a:
+  - 🏠 **Inicio**: Página principal de jw.org
+  - 📰 **Noticias**: Últimas noticias de jw.org
+- **Botón Atrás** funcional para historial de navegación
+- **UI limpia** sin elementos extra, idéntica a la web
+
+### ⚡ Caché Inteligente
+- **Carga instantánea** desde caché en aperturas posteriores
+- **Funcionamiento offline** con contenido visitado previamente
+- **Actualización en segundo plano** sin recargar la UI
+- **Detección automática de red** para optimizar estrategia de caché
+- **Sistema de doble swipe** para forzar actualización completa
+
+### 🔧 PWA y Optimizaciones
+- **Service Workers** habilitados para funcionalidad PWA
+- **Hardware acceleration** para mejor rendimiento
+- **Safe Browsing** habilitado (Android 7.0+)
+- **Gestión óptima de memoria** y ciclo de vida
+- **Sin barra de estado superpuesta** - interfaz perfectamente alineada
+
+---
+
+## 📥 Instalación
+
+### Requisitos
+- **Android 10** (API 29) o superior
+- Conexión a Internet (solo primera vez)
+
+### Instalación Automática
 ```bash
-# Build Debug APK
+./install.sh
+```
+
+### Instalación Manual
+```bash
+# Compilar
 ./gradlew assembleDebug
 
-# El APK se genera en:
-# app/build/outputs/apk/debug/app-debug.apk
-
-# Instalar en dispositivo conectado
+# Instalar (con dispositivo conectado)
 ./gradlew installDebug
 ```
 
-## Uso
+---
 
-1. **Primera carga**: La app descargará y cacheará el contenido de jw.org
-2. **Aperturas posteriores**: Carga instantánea desde cache con actualización en segundo plano
-3. **Refrescar**: Desliza hacia abajo 2 veces consecutivas para forzar recarga completa
-4. **Navegación**: Usa el botón atrás para navegar por el historial
-5. **Offline**: El contenido previamente cargado seguirá disponible
+## 💡 Uso
 
-## Notas Técnicas
+### Primera Vez
+1. Abre la aplicación
+2. Selecciona tu idioma preferido del diálogo
+3. Navega normalmente - todo se cacheará automáticamente
 
-### Cache Mode
-- Por defecto: `LOAD_CACHE_ELSE_NETWORK`
-- Durante refresh forzado: `LOAD_NO_CACHE` (temporalmente)
-- La cache se restaura automáticamente después de 1 segundo
+### Navegación Diaria
+- Usa la **barra inferior** para cambiar entre Inicio y Noticias
+- Navega por enlaces normalmente dentro de jw.org
+- **Botón Atrás** para volver a páginas anteriores
 
-### Lifecycle
-- `onPause()`: Pausa el WebView para ahorrar recursos
-- `onResume()`: Reanuda el WebView
-- `onDestroy()`: Limpia el WebView correctamente
+### Actualizar Contenido
+**Doble swipe** (desliza 2 veces hacia abajo en menos de 2 segundos):
+- Fuerza recarga completa sin caché
+- Descarga contenido actualizado del servidor
 
-### Seguridad
-- SSL/TLS habilitado
-- Safe Browsing activado
-- Cleartext traffic deshabilitado
-- Solo navegación dentro de dominios jw.org
+### Cambiar Idioma
+1. Toca **⋮** (menú superior derecho)
+2. Selecciona **"Cambiar idioma"**
+3. Elige el nuevo idioma
+4. La página se recargará automáticamente
 
-## Mejoras Futuras Posibles
+### Modo Offline
+- Todo el contenido visitado está disponible sin conexión
+- Navega por páginas ya cacheadas
+- Enlaces a contenido no visitado no funcionarán
 
-- [ ] Modo oscuro automático
-- [ ] Descarga de contenido para offline completo
-- [ ] Notificaciones push
-- [ ] Widget de pantalla de inicio
-- [ ] Compartir contenido
-- [ ] Favoritos locales
+---
 
-## Licencia
+## 🛠️ Tecnologías
 
-Este proyecto es no oficial y no está afiliado con jw.org
-
-## Desarrollador
-
-Creado para facilitar el acceso móvil optimizado a jw.org
-# JW UNOFFICIAL - WebApp para JW.ORG
-
-Una aplicación Android optimizada que funciona como Progressive Web App (PWA) para acceder a https://www.jw.org/
-
-## Características
-
-### ✨ Funcionalidades Principales
-
-- **WebView Optimizado**: Carga y muestra el contenido de jw.org de manera nativa
-- **Pull-to-Refresh Inteligente**: Requiere 2 swipes hacia abajo consecutivos (dentro de 2 segundos) para refrescar completamente la página
-- **Cache Agresivo**: Sistema de caché mejorado que almacena contenido localmente para:
-  - Carga instantánea de la UI
-  - Reducción del consumo de datos
-  - Funcionamiento parcial offline
-  - Solo se actualizan los datos nuevos del servidor
-
-### 🚀 Optimizaciones de Rendimiento
-
-- **Carga Asíncrona**: La UI se carga instantáneamente desde la cache mientras los datos se actualizan en segundo plano
-- **Service Workers**: Soporte para PWA con service workers (Android 7.0+)
-- **DOM Storage**: Almacenamiento local y de sesión habilitado
-- **Hardware Acceleration**: Aceleración por hardware activada para mejor rendimiento
-
-### 🎨 Interfaz de Usuario
-
-- **Sin Elementos Extra**: No hay barras de navegación, toolbars ni elementos UI adicionales
-- **Apariencia Original**: La página se muestra exactamente como en el navegador
-- **StatusBar Transparente**: Barra de estado transparente para experiencia inmersiva
-- **Sin ActionBar**: Tema NoActionBar para mantener la UI limpia
-
-### 📱 Compatibilidad
-
-- **Android Mínimo**: Android 10 (API 29)
-- **Android Target**: Android 14 (API 36)
-- **Navegación WebView**: Botón atrás navega por el historial del WebView
-- **Orientación**: Maneja cambios de orientación sin recargar
-
-## Cómo Funciona
-
-### Sistema de Cache
-
-La aplicación utiliza `LOAD_CACHE_ELSE_NETWORK` que:
-1. Primero intenta cargar desde la cache local
-2. Si no hay cache o está desactualizada, carga desde la red
-3. Los recursos se guardan automáticamente en la cache del dispositivo
-
-### Pull-to-Refresh
-
-- **Primer swipe**: No hace nada, solo cuenta
-- **Segundo swipe (dentro de 2 segundos)**: Fuerza una recarga completa ignorando la cache
-- Después de la recarga, el sistema vuelve al modo de cache normal
-
-### Offline
-
-- La app puede mostrar contenido previamente cargado cuando no hay conexión
-- Los recursos estáticos (CSS, JS, imágenes) se almacenan localmente
-- La navegación por páginas ya visitadas funciona offline
-
-## Estructura del Proyecto
-
-```
-app/
-├── src/main/
-│   ├── java/ia/ankherth/jwunofficial/
-│   │   └── MainActivity.kt          # Activity principal con WebView
-│   ├── res/
-│   │   ├── layout/
-│   │   │   └── activity_main.xml    # Layout con SwipeRefreshLayout + WebView
-│   │   └── values/
-│   │       └── themes.xml           # Tema sin ActionBar
-│   └── AndroidManifest.xml          # Configuración de permisos y activity
-```
-
-## Configuración Técnica
+- **Lenguaje**: Kotlin
+- **Min SDK**: Android 10 (API 29)
+- **Target SDK**: Android 14 (API 36)
+- **Componentes principales**:
+  - AndroidX Core KTX
+  - Material Design Components
+  - WebKit 1.11.0
+  - ViewBinding
 
 ### Permisos
-- `INTERNET`: Para acceder a jw.org
-- `ACCESS_NETWORK_STATE`: Para detectar conectividad
+- `INTERNET` - Acceso a contenido web
+- `ACCESS_NETWORK_STATE` - Detección de conectividad
 
-### WebView Settings
-- JavaScript habilitado
-- DOM Storage habilitado
-- Mixed Content Mode: Compatibility
-- Wide Viewport habilitado
-- Zoom deshabilitado
-- File Access habilitado
-- Safe Browsing habilitado (Android 7.0+)
+---
 
-## Instalación
+## 📚 Documentación Adicional
 
-### Requisitos
-- Android Studio Hedgehog o superior
-- JDK 11 o superior
-- SDK de Android con API 29-36
+- [CHANGELOG.md](CHANGELOG.md) - Historial detallado de versiones
+- [USER_GUIDE.md](USER_GUIDE.md) - Guía completa de uso
+- [LANGUAGE_SYSTEM.md](LANGUAGE_SYSTEM.md) - Sistema de idiomas
+- [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md) - Detalles técnicos
 
-### Pasos
+---
+
+## 📝 Versión Actual: 1.0.2
+
+### Mejoras Recientes
+- ✅ Sistema multi-idioma completo (32 idiomas)
+- ✅ Barra de navegación inferior
+- ✅ Caché inteligente optimizado
+- ✅ Corrección de superposición de UI
+- ✅ Detección automática de cambios de idioma
+- ✅ Menú de opciones con cambio manual de idioma
+
+---
+
+## 📄 Licencia
+
+Este proyecto es de código abierto bajo licencia MIT.
+
+## ⚠️ Disclaimer
+
+Esta es una aplicación **no oficial** y no está afiliada, asociada, autorizada, respaldada o de ninguna manera oficialmente conectada con jw.org o cualquiera de sus subsidiarias o afiliados.
+
+---
+
+**Desarrollado con ❤️ para la comunidad**
 
