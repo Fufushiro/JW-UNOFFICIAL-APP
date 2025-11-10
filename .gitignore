@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Project specific ignores
+# Do not commit signing keys or built releases
+KEY/
+app/release/
