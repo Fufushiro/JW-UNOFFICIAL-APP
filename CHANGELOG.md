@@ -27,6 +27,16 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [1.0.0] - 2025-11-06
 
+## [1.0.2] - 2025-11-10
+
+### ✨ Cambios y Correcciones
+
+- Actualizada la versión de la aplicación a **1.0.2** (versionCode 3)
+- Integración de mejoras documentadas en `CAMBIOS_REALIZADOS.md`
+- Ajustes menores en recursos y configuración del proyecto
+
+---
+
 ### 🎉 Lanzamiento Inicial
 
 Primera versión estable de JW UNOFFICIAL - Aplicación Android nativa para acceder a jw.org

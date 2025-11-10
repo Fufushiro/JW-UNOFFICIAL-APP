@@ -1,4 +1,9 @@
 # Cambios Realizados
+
+## [1.0.2] - 2025-11-10
+
+Versión 1.0.2: Actualización de versión y ajustes menores. Se mantienen los cambios previos documentados a continuación.
+
 ## Resumen
 Se han realizado las siguientes mejoras en la aplicación JW UNOFFICIAL:
 ### 1. **Corrección del problema de superposición de la barra de estado**
